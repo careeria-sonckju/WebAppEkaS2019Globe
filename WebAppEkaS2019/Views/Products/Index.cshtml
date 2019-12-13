@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebAppEkaS2019.Models.Products>
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Culture = UICulture = "fr-FR";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".showProductID").click(function () {
+                let productId = $(this).data("productid");
+                alert("Klikkasit tuotetta: " + productId);
+            });
+        });
+        $(function () {
+            $("#naytaProductID").click(function () {
+                let productId = $(this).data("productid");
+                alert("Klikkasit tuotetta: " + productId);
+            });
+        });
+        $(function () {
+            $(".showCategoryID").change(function () {
+                let categoryId = $(this).data("categoryid");
+                alert("Valitsit tuoteryhmän: " + categoryId);
+            });
+        });
+
+    </script>
+}
+<script>
+    function naytaValittuTuote(tuotepara) {
+        alert("Klikkasit tätä tuotetta: " + tuotepara);
+    }
+
+    function singleSelectChangeValue() {
+        //Getting Value
+        //let selValue = document.getElementById("singleSelectDD").value;
+        let selObj = document.getElementById("singleSelectValueDDJS");
+        let selValue = selObj.options[selObj.selectedIndex].value;
+        //Setting Value
+        document.getElementById("textFieldValueJS").value = selValue;
+    }
+</script>
+
+<h2>Tuotteet</h2>
+@*//Tutki tätä:  https://www.freakyjolly.com/how-to-get-selected-value-in-dropdown-list-using-jquery-javascript/*@
+<select class="showCategoryID" id="singleSelectValueDDJS" onchange="singleSelectChangeValue()">
+    <option class="showCateroryID">All</option>
+    @foreach (WebAppEkaS2019.Models.Categories kategoria in ViewBag.tuoteryhmat)
+    {
+        <option data-categoryid="@kategoria.CategoryID" value="@kategoria.CategoryID">@kategoria.CategoryName</option>
+    }
+</select>
+<input type="text" id="textFieldValueJS" class="form-control" placeholder="get value on option select">
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th>TuoteId</th>
+            <th>Tuotteen nimi</th>
+            <th>A-hinta</th>
+            <th>Varastosaldo</th>
+            <th>Tilattu määrä</th>
+            <th>Kuva</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tuote in Model)
+        {
+            <tr>
+                <td>@tuote.ProductID</td>
+                <td>@tuote.ProductName</td>
+                <td>@String.Format("{0:F2}", tuote.UnitPrice)</td>
+                <td>@tuote.UnitsInStock</td>
+                <td>@tuote.UnitsOnOrder</td>
+                <td><img style="height: 100px; display: block;" src="@tuote.ImageLink" alt="Card image"></td>
+                <td><button type="button" class="btn btn-warning" onclick='naytaValittuTuote("@tuote.ProductName")'>Muokkaa1</button></td>
+                <td><button type="button" class="btn btn-info showProductID" data-productid="@tuote.ProductID">Muokkaa2</button></td>
+                <td><button type="button" class="btn btn-default" id="naytaProductID" data-productid="@tuote.ProductID">Muokkaa3</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h4>@Model.Count() riviä </h4>
+
+
+
+
+

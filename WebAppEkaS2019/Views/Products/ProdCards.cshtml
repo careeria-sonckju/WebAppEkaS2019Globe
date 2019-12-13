@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebAppEkaS2019.Models.Products>
+
+@{
+    ViewBag.Title = "ProdCards";
+}
+<h2>ProdCards</h2>
+<div class="container-fluid">
+    @foreach (var tuote in Model)
+    {
+        @*<div class="col-md-5"></div>*@
+        <div class="kelluu">
+            <div class="card">
+                <h5 class="card-title">@tuote.ProductName</h5>
+                <img style="height: 200px; display: block;" src="@tuote.ImageLink" alt="Kuva" />
+                KOODAA TÄHÄN LISÄÄ TIETOKANTAKENTTIEN NÄYTTÄMISIÄ
+
+            </div>
+
+        </div>
+    }
+</div>

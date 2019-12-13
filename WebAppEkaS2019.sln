@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppEkaS2019", "WebAppEkaS2019\WebAppEkaS2019.csproj", "{B386AFB6-0833-421F-B90C-56C392D33DBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B386AFB6-0833-421F-B90C-56C392D33DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B386AFB6-0833-421F-B90C-56C392D33DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B386AFB6-0833-421F-B90C-56C392D33DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B386AFB6-0833-421F-B90C-56C392D33DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61C0D43F-0063-4FE2-A0FC-C73A11CC4549}
+	EndGlobalSection
+EndGlobal
