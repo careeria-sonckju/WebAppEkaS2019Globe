@@ -87,6 +87,8 @@ namespace WebAppEkaS2019.Controllers
                 ViewBag.LoginMessage = "Successfull login";
                 ViewBag.LoggedStatus = "In";
                 Session["UserName"] = LoggedUser.UserName;
+                Session["LoginID"] = LoggedUser.LoginId;
+                //Session["AccessLevel"] = LoggedUser.AccessLevel;
                 return RedirectToAction("Index", "Home"); //Tässä määritellään mihin onnistunut kirjautuminen johtaa --> Home/Index
             }
             else
