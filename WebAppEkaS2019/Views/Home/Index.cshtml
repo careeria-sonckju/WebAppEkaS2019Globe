@@ -1,9 +1,58 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <div class="jumbotron">
+        <h2>Minun ensimmäinen ASP.NET-sovellus</h2>
+        <img src="~/Icons/battery-charging.svg" alt="" width="32" height="32" title="Ladataan akkuja...">
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Mallibutton &raquo;</a></p>
+        <div class="h2">
+            <p>Buttonit FAS-ikoneilla:</p>
+            <a class="btn btn-primary fas fa-cloud" href="~/Products/index"> Tuotteet</a>
+            <a class="btn btn-secondary fas fa-coffee" href="~/Contacts/index"> Kontaktihlöt</a>
+            <a class="btn btn-success fas fa-car" href="~/Products/prodcards"> Tuotekortit</a>
+            <a class="btn btn-info fas fa-file" href="~/Employees/index"> Työntekijät</a>
+            <a class="btn btn-warning fas fa-bars" href="~/Shippers/index"> Rahtarit</a>
+        </div>
+        <div class="h2">
+            <p>Buttonit SVG-ikoneilla:</p>
+            <a class="btn btn-primary" href="~/Products/index"><img src="~/Icons/building.svg" alt="Tuotteet" width="32" height="32" title="Tuotteet"> Tuotteet</a>
+            <a class="btn btn-primary" href="~/Contacts/index"><img src="~/Icons/bullseye.svg" alt="Kontaktihlöt" width="32" height="32" title="Kontaktihlöt"> Kontaktihlöt</a>
+            <a class="btn btn-primary" href="~/Products/prodcards"><img src="~/Icons/table.svg" alt="Tuotekortit" width="32" height="32" title="Tuotekortit"> Tuotekortit</a>
+            <a class="btn btn-primary" href="~/Employees/index"><img src="~/Icons/wallet.svg" alt="Työntekijät" width="32" height="32" title="Työntekijät"> Työntekijät</a>
+            <a class="btn btn-primary" href="~/Shippers/index"><img src="~/Icons/window.svg" alt="Rahtarit" width="32" height="32" title="Rahtarit"> Rahtarit</a>
+        </div>
+        <div class="h2">
+            <p>Pelkät FAS-ikonit:</p>
+            <div class="list-unstyled">
+                <a class="fas fa-cloud" title="Tuotteet" href="~/Products/index"></a>
+                <p class="fas fa-coffee"></p>
+                <p class="fas fa-car"></p>
+                <p class="fas fa-file"></p>
+                <p class="fas fa-bars"></p>
+            </div>
+        </div>
+        @*Modal -tyyppisen ikkunan avauspainike*@
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Avaa Modal-ikkuna</button>
 
-<div class="jumbotron">
-    <h2>Minun ensimmäinen ASP.NET-sovellus</h2>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Mallibutton &raquo;</a></p>
-</div>
+        @*Modal -tyyppisen ikkunan koodiesimerkki*@
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Modal-ikkuna</h1>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tässä voisi vaikka luetella jotain tietoja taikka vastata kyllä/ei...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 

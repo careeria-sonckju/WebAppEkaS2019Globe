@@ -1,93 +1,86 @@
-﻿@model IEnumerable<WebAppEkaS2019.Models.Products>
+﻿@model PagedList.IPagedList<WebAppEkaS2019.Models.Products>
+@using PagedList.Mvc;
+@*Luodaan Products-tyyppinen olio, jotta voidaan käyttää Html.DisplayNameFor -helpperiä IPagedList -tyyppisessä yhteydessä
+    IEnumerable:ssa voi käyttää suoraan Html.DisplayNameFor(model => Model.UnitsInStock) -viittausta, mutta ei IPagedList:in kanssa*@
+@{WebAppEkaS2019.Models.Products pr = new WebAppEkaS2019.Models.Products();}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Products";
 }
 
 @{
     Culture = UICulture = "fi-FI";
 }
-
+<!--tämä on jQueryä-->
 @section scripts {
     <script type="text/javascript">
-        $(function () {
-            $(".showProductID").click(function () {
-                let productId = $(this).data("productid");
-                alert("Klikkasit tuotetta: " + productId);
-            });
+        $("#singleSelectedCategoryID").on("change", function () {
+            //Getting Value
+            var selValue = $("#singleSelectedCategoryID").val();
+            document.getElementById("ProductCategory").value = selValue;
         });
-        $(function () {
-            $("#naytaProductID").click(function () {
-                let productId = $(this).data("productid");
-                alert("Klikkasit tuotetta: " + productId);
-            });
-        });
-        $(function () {
-            $(".showCategoryID").change(function () {
-                let categoryId = $(this).data("categoryid");
-                alert("Valitsit tuoteryhmän: " + categoryId);
-            });
-        });
-
     </script>
 }
-<script>
-    function naytaValittuTuote(tuotepara) {
-        alert("Klikkasit tätä tuotetta: " + tuotepara);
-    }
-
-    function singleSelectChangeValue() {
-        //Getting Value
-        //let selValue = document.getElementById("singleSelectDD").value;
-        let selObj = document.getElementById("singleSelectValueDDJS");
-        let selValue = selObj.options[selObj.selectedIndex].value;
-        //Setting Value
-        document.getElementById("textFieldValueJS").value = selValue;
-    }
-</script>
 
 <h2>Tuotteet</h2>
-@*//Tutki tätä:  https://www.freakyjolly.com/how-to-get-selected-value-in-dropdown-list-using-jquery-javascript/*@
-<select class="showCategoryID" id="singleSelectValueDDJS" onchange="singleSelectChangeValue()">
-    <option class="showCateroryID">All</option>
-    @foreach (WebAppEkaS2019.Models.Categories kategoria in ViewBag.tuoteryhmat)
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+<div class="input-group">
+    <p class="px-1">@Html.Label("Find by name:")</p>
+    <p class="px-1">@Html.TextBox("SearchString1", ViewBag.currentFilter1 as string, new { @class = "form-control" })</p>
+    <p class="px-1">@Html.Label("Find by Product Category:")</p>
+    <p class="px-1">@Html.Hidden("ProductCategory", ViewBag.currentFilter1 as string, new { @id = "ProductCategory", @class = "form-control" })</p> @*piilotettu kenttä, jolla tehdään kontrollerihaku*@
+    <p class="px-1">@Html.DropDownList("CategoryID", null, htmlAttributes: new { @id = "singleSelectedCategoryID", @class = "form-control" })</p>
+    <p class="px-1"><input type="submit" value="Search" class="form-control" /></p>
+</div>
+
+}
+<table class="table">
+    <tr>
+        <th>@Html.ActionLink("Tuotteen nimi", "Index", new { sortOrder = ViewBag.ProductNameSortParm, currentFilter1 = ViewBag.currentFilter1 })</th>
+        <th>@Html.DisplayNameFor(model => pr.QuantityPerUnit)</th>
+        <th>@Html.ActionLink("A-hinta", "Index", new { sortOrder = ViewBag.UnitPriceSortParm, currentFilter1 = ViewBag.currentFilter1 })</th>
+        <th>@Html.DisplayNameFor(model => pr.UnitsInStock)</th>
+        <th>@Html.DisplayNameFor(model => pr.UnitsOnOrder)</th>
+        <th>@Html.DisplayNameFor(model => pr.ReorderLevel)</th>
+        <th>@Html.DisplayNameFor(model => pr.Discontinued)</th>
+        <th>@Html.DisplayNameFor(model => pr.ImageLink)</th>
+        <th>@Html.DisplayNameFor(model => pr.Categories.CategoryName)</th>
+        <th>@Html.DisplayNameFor(model => pr.Suppliers.CompanyName)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
     {
-        <option data-categoryid="@kategoria.CategoryID" value="@kategoria.CategoryID">@kategoria.CategoryName</option>
-    }
-</select>
-<input type="text" id="textFieldValueJS" class="form-control" placeholder="get value on option select">
-
-<table class="table table-hover">
-
-    <thead>
         <tr>
-            <th>TuoteId</th>
-            <th>Tuotteen nimi</th>
-            <th>A-hinta</th>
-            <th>Varastosaldo</th>
-            <th>Tilattu määrä</th>
-            <th>Kuva</th>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td>@Html.DisplayFor(modelItem => item.QuantityPerUnit)</td>
+            <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+            <td>@Html.DisplayFor(modelItem => item.UnitsInStock)</td>
+            <td>@Html.DisplayFor(modelItem => item.UnitsOnOrder)</td>
+            <td>@Html.DisplayFor(modelItem => item.ReorderLevel)</td>
+            <td>@Html.DisplayFor(modelItem => item.Discontinued)</td>
+            <td>@Html.DisplayFor(modelItem => item.ImageLink)</td>
+            <td>@Html.DisplayFor(modelItem => item.Categories.CategoryName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Suppliers.CompanyName)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>
         </tr>
-    </thead>
-    <tbody>
-        @foreach (var tuote in Model)
-        {
-            <tr>
-                <td>@tuote.ProductID</td>
-                <td>@tuote.ProductName</td>
-                <td>@String.Format("{0:F2}", tuote.UnitPrice)</td>
-                <td>@tuote.UnitsInStock</td>
-                <td>@tuote.UnitsOnOrder</td>
-                <td><img style="height: 100px; display: block;" src="@tuote.ImageLink" alt="Card image"></td>
-                <td><button type="button" class="btn btn-warning" onclick='naytaValittuTuote("@tuote.ProductName")'>Muokkaa1</button></td>
-                <td><button type="button" class="btn btn-info showProductID" data-productid="@tuote.ProductID">Muokkaa2</button></td>
-                <td><button type="button" class="btn btn-default" id="naytaProductID" data-productid="@tuote.ProductID">Muokkaa3</button></td>
-            </tr>
-        }
-    </tbody>
+    }
+
 </table>
-<h4>@Model.Count() riviä </h4>
 
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-
-
-
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter1 = ViewBag.currentFilter1 }))

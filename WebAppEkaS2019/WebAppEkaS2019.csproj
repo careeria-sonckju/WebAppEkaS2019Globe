@@ -54,6 +54,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -228,9 +234,23 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap2.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\site2.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Icons\battery-charging.svg" />
+    <Content Include="Icons\battery-full.svg" />
+    <Content Include="Icons\battery.svg" />
+    <Content Include="Icons\building.svg" />
+    <Content Include="Icons\bullseye.svg" />
+    <Content Include="Icons\sun.svg" />
+    <Content Include="Icons\table.svg" />
+    <Content Include="Icons\triangle-fill.svg" />
+    <Content Include="Icons\triangle.svg" />
+    <Content Include="Icons\wallet.svg" />
+    <Content Include="Icons\window.svg" />
     <Content Include="Models\NorthwindModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NorthwindModel.edmx</DependentUpon>
@@ -371,7 +391,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Laskuri.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Index2.cshtml" />
     <Content Include="Views\Shippers\Index.cshtml" />
     <Content Include="Views\Shippers\Edit.cshtml" />
     <Content Include="Views\Shippers\Create.cshtml" />
@@ -398,6 +418,7 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Products\ProdCards.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
